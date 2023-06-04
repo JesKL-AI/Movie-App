@@ -6,12 +6,15 @@ let getMovie = () =>{
 	let movieName = movieNameRef.value;
 	let url = `https://www.omdbapi.com/?t=${movieName}&apikey=${key}`;
 	
+
+	// if the input is empty
 	if(movieName.length <=0) {
 		result.innerHTML = `<h3 class="message"> Please enter a movie name </h3>`;
 	}
 	
 	else {
 		fetch(url).then((resp) => resp.json()).then((data) =>{
+			// if the movie is found
 			if(data.Response == "True"){
 				result.innerHTML = `
 					<div class="info">
@@ -38,7 +41,8 @@ let getMovie = () =>{
 					</div>
 				`;
 			}
-
+			
+			// if movie not found
 			else{
 				result.innerHTML = `<h3 class = "msg"> ${data.Error} </h3>`
 			}
